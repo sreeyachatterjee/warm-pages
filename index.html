@@ -1,78 +1,46 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>for my valentine ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>warm pages</title>
+    <link href="https://fonts.googleapis.com/css2?family=dancing+script:wght@400;700&family=poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>happy valentine 💕</h1>
+    </header>
 
-<!-- Floating Hearts -->
-<div class="hearts"></div>
+    <section class="love-notes">
+        <h2>little things i love about you 💕</h2>
+        <p id="note">tap the button 🤍</p>
+        <button onclick="newnote()">reveal one ✨</button>
+    </section>
 
-<section class="hero">
-    <h1>happy valentine’s day ❤️</h1>
-    <p>to the one who makes my world brighter every day</p>
-    <button onclick="scrollToSection('letter')">open my heart 💌</button>
-</section>
+    <section class="music">
+        <h2>songs that feel like us 🎶</h2>
+        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5L0ynGOZKFicKWHmBDw3Ov?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <p class="music-note">press play when you’re ready… this one is for you ❤️</p>
+    </section>
 
-<section id="letter" class="letter">
-    <h2>my love letter to you 💕</h2>
-    <p>
-        hey love,<br><br>
-        every moment with you feels like magic.  
-        you are my comfort, my happiness, my favorite person.  
-        thank you for being you — today and always. ❤️
-    </p>
-</section>
+    <section class="gallery">
+        <h2>our memories 📸</h2>
+        <div class="grid">
+            <img src="pic1.jpeg" alt="memory 1">
+            <img src="pic2.jpeg" alt="memory 2">
+            <img src="pic3.jpeg" alt="memory 3">
+            <img src="pic4.jpeg" alt="memory 4">
+            <img src="pic5.jpeg" alt="memory 5">
+        </div>
+    </section>
 
-<section class="gallery">
-    <h2>Our Memories 📸</h2>
-    <div class="photos">
-        <img src="pic1.jpeg">
-        <img src="pic2.jpeg">
-        <img src="pic3.jpeg">
-        <img src="pic4.jpeg">
-        <img src="pic5.jpeg">
-    </div>
-</section>
+    <section class="game">
+        <h2>find your way to me 💕</h2>
+        <p>use arrow keys to reach me ❤️</p>
+        <canvas id="mazecanvas" width="1000" height="1000"></canvas>
+    </section>
 
-<section class="love-notes">
-    <h2>what do i love about you? 💕</h2>
-    <p id="note">tap the button 🤍</p>
-    <button onclick="newNote()">reveal one ✨</button>
-</section>
-
-<section class="footer">
-    <h3>forever yours ❤️</h3>
-</section>
-<section class="music">
-    <h2>songs that remind me of us 🎶</h2>
-
-    <iframe
-        style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/5L0ynGOZKFicKWHmBDw3Ov?utm_source=generator"
-        width="100%"
-        height="352"
-        frameborder="0"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-    </iframe>
-
-    <p class="music-note">
-        press play when you’re ready… these are for you ❤️
-    </p>
-</section>
-<section class="game">
-    <h2>find your way to me 💕</h2>
-    <p>use arrow keys to reach the heart 💖</p>
-
-    <canvas id="mazeCanvas" width="1000" height="1000"></canvas>
-</section>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-
-
 </html>
