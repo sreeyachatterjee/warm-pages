@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>For My Valentine ❤️</title>
+    <title>for my valentine ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,18 +12,18 @@
 <div class="hearts"></div>
 
 <section class="hero">
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <p>To the one who makes my world brighter every day</p>
-    <button onclick="scrollToSection('letter')">Open My Heart 💌</button>
+    <h1>happy valentine’s day ❤️</h1>
+    <p>to the one who makes my world brighter every day</p>
+    <button onclick="scrollToSection('letter')">open my heart 💌</button>
 </section>
 
 <section id="letter" class="letter">
-    <h2>My Love Letter to You 💕</h2>
+    <h2>my love letter to you 💕</h2>
     <p>
-        Hey love,<br><br>
-        Every moment with you feels like magic.  
-        You are my comfort, my happiness, my favorite person.  
-        Thank you for being you — today and always. ❤️
+        hey love,<br><br>
+        every moment with you feels like magic.  
+        you are my comfort, my happiness, my favorite person.  
+        thank you for being you — today and always. ❤️
     </p>
 </section>
 
@@ -34,21 +35,20 @@
         <img src="pic3.jpeg">
         <img src="pic4.jpeg">
         <img src="pic5.jpeg">
-        <img src="pic6.jpeg">
     </div>
 </section>
 
-<section class="questions">
-    <h2>cute questions just for us 💖</h2>
-    <p id="question">click the button 💕</p>
-    <button onclick="newQuestion()">ask me something 🥰</button>
+<section class="love-notes">
+    <h2>what do i love about you? 💕</h2>
+    <p id="note">tap the button 🤍</p>
+    <button onclick="newNote()">reveal one ✨</button>
 </section>
 
 <section class="footer">
     <h3>forever yours ❤️</h3>
 </section>
 <section class="music">
-    <h2>Songs That Feel Like Us 🎶</h2>
+    <h2>songs that remind me of us 🎶</h2>
 
     <iframe
         style="border-radius:12px"
@@ -61,10 +61,16 @@
     </iframe>
 
     <p class="music-note">
-        Press play when you’re ready… this one is for you ❤️
+        press play when you’re ready… these are for you ❤️
     </p>
 </section>
+<section class="game">
+    <h2>find your way to me 💕</h2>
+    <p>use arrow keys to reach the heart 💖</p>
 
+    <canvas id="mazeCanvas" width="1000" height="1000"></canvas>
+</section>
 <script src="script.js"></script>
 </body>
+
 </html>
