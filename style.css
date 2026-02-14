@@ -1,166 +1,56 @@
-<<<<<<< HEAD
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'poppins', sans-serif;
     background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
-    color: #a83f87;
+    color: #4a0033;
     text-align: center;
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+header h1 {
+    font-family: 'dancing script', cursive;
+    font-size: 3rem;
+    margin: 30px 0;
 }
 
-h1 {
-    font-size: 3rem;
+h2 {
+    font-family: 'dancing script', cursive;
+    font-size: 2.2rem;
+    margin: 20px 0;
 }
 
 button {
-    padding: 12px 25px;
+    font-family: 'dancing script', cursive;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: #ff4d6d;
+    color: #fff;
     border: none;
-    border-radius: 25px;
-    background: #cc697b;
-    color: white;
-    font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: transform 0.2s;
 }
 
 button:hover {
-    background: #ee859c;
-}
-
-section {
-    padding: 60px 20px;
-}
-
-.letter, .questions {
-    max-width: 700px;
-    margin: auto;
-}
-
-.gallery .photos {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.gallery img {
-    width: 200px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-
-.gallery img:hover {
     transform: scale(1.05);
 }
 
-.footer {
-    padding: 30px;
-    background: rgba(255,255,255,0.4);
-}
-.game {
-    padding: 60px 20px;
-}
-
-canvas {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-.game {
-    padding: 60px 20px;
-}
-
-canvas {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-canvas {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+.love-notes, .music, .game {
+    padding: 50px 20px;
 }
 
 canvas {
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-=======
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
-    color: #a83f87;
-    text-align: center;
+    margin-top: 20px;
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.music iframe {
+    border-radius: 12px;
+    margin-top: 20px;
 }
 
-h1 {
-    font-size: 3rem;
-}
-
-button {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 25px;
-    background: #cc697b;
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #ee859c;
-}
-
-section {
-    padding: 60px 20px;
-}
-
-.letter, .questions {
-    max-width: 700px;
-    margin: auto;
-}
-
-.gallery .photos {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.gallery img {
-    width: 200px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    transition: 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.05);
-}
-
-.footer {
-    padding: 30px;
-    background: rgba(255,255,255,0.4);
->>>>>>> 45b432b372cb554c34adc335c86c1e44a0b88e82
+.music-note {
+    margin-top: 10px;
+    font-style: italic;
 }

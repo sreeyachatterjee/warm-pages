@@ -1,41 +1,26 @@
-<<<<<<< HEAD
-// Smooth scroll for buttons
-function scrollToSection(id) {
-    const section = document.getElementById(id);
-    if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-    }
-}
-
-// 💕 Reasons I Love You – tap to reveal
+// love notes
 const notes = [
-    "The way you look at me like I’m home 🫶",
-    "How you always make time for me, no matter what ❤️",
-    "Your laugh — it’s my favorite sound 🥹",
-    "How safe I feel when I’m with you 🤍",
-    "The way you believe in me, even when I don’t ✨",
-    "How you make ordinary days feel special 💕",
-    "You. Just you."
+    "the way you look at me like i’m home 🫶",
+    "how you always make time for me, no matter what ❤️",
+    "your laugh — it’s my favorite sound 🥹",
+    "how safe i feel when i’m with you 🤍",
+    "the way you believe in me, even when i don’t ✨",
+    "how you make ordinary days feel special 💕",
+    "you. just you."
 ];
 
-function newNote() {
-    const noteElement = document.getElementById("note");
-
-    if (!noteElement) {
-        console.error("Element with id='note' not found.");
-        return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * notes.length);
-    noteElement.innerText = notes[randomIndex];
+function newnote() {
+    const noteelement = document.getElementById("note");
+    if (!noteelement) return;
+    const randomindex = Math.floor(Math.random() * notes.length);
+    noteelement.innertext = notes[randomindex];
 }
 
-// Canvas & tile size
-const canvas = document.getElementById("mazeCanvas");
+// maze game
+const canvas = document.getElementById("mazecanvas");
 const ctx = canvas.getContext("2d");
-const tileSize = 50; // 20 tiles × 50px = 1000px
+const tilesize = 50;
 
-// 0 = path, 1 = wall (super hard maze)
 const maze = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
   [1,0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,1],
@@ -59,80 +44,50 @@ const maze = [
   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
-let player = { x: 1, y: 1 };  // S
-const goal = { x: 18, y: 18 }; // P
+let player = { x: 1, y: 1 };
+const goal = { x: 18, y: 18 };
 
-function drawMaze() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  for (let y = 0; y < maze.length; y++) {
-    for (let x = 0; x < maze[y].length; x++) {
-      if (maze[y][x] === 1) {
-        ctx.fillStyle = "#ffb3c6"; // walls
-        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-      } else {
-        ctx.fillStyle = "#fff"; // path
-        ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
-      }
+function drawmaze() {
+    ctx.clearrect(0,0,canvas.width,canvas.height);
+    for(let y=0;y<maze.length;y++){
+        for(let x=0;x<maze[y].length;x++){
+            if(maze[y][x]===1){
+                ctx.fillstyle="#ffb3c6";
+                ctx.fillrect(x*tilesize,y*tilesize,tilesize,tilesize);
+            }else{
+                ctx.fillstyle="#fff";
+                ctx.fillrect(x*tilesize,y*tilesize,tilesize,tilesize);
+            }
+        }
     }
-  }
+    ctx.fillstyle="#ff4d6d";
+    ctx.font="bold 40px arial";
+    ctx.textalign="center";
+    ctx.textbaseline="middle";
+    ctx.filltext("p",goal.x*tilesize+tilesize/2,goal.y*tilesize+tilesize/2);
 
-  // Draw goal "P"
-  ctx.fillStyle = "#ff4d6d";
-  ctx.font = "bold 40px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("S", goal.x * tileSize + tileSize/2, goal.y * tileSize + tileSize/2);
-
-  // Draw player "S"
-  ctx.fillStyle = "#ff006e";
-  ctx.fillText("P", player.x * tileSize + tileSize/2, player.y * tileSize + tileSize/2);
+    ctx.fillstyle="#ff006e";
+    ctx.filltext("s",player.x*tilesize+tilesize/2,player.y*tilesize+tilesize/2);
 }
 
-function movePlayer(dx, dy) {
-  const newX = player.x + dx;
-  const newY = player.y + dy;
-
-  if (maze[newY][newX] === 0) {
-    player.x = newX;
-    player.y = newY;
-  }
-
-  if (player.x === goal.x && player.y === goal.y) {
-    setTimeout(() => {
-      alert("You found me. Just like always ❤️");
-    }, 100);
-  }
-
-  drawMaze();
+function moveplayer(dx,dy){
+    const newx = player.x + dx;
+    const newy = player.y + dy;
+    if(maze[newy][newx]===0){
+        player.x=newx;
+        player.y=newy;
+    }
+    if(player.x===goal.x && player.y===goal.y){
+        setTimeout(()=>{alert("you found me. just like always ❤️")},100);
+    }
+    drawmaze();
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowUp") movePlayer(0, -1);
-  if (e.key === "ArrowDown") movePlayer(0, 1);
-  if (e.key === "ArrowLeft") movePlayer(-1, 0);
-  if (e.key === "ArrowRight") movePlayer(1, 0);
+document.addEventListener("keydown",(e)=>{
+    if(e.key==="arrowup") moveplayer(0,-1);
+    if(e.key==="arrowdown") moveplayer(0,1);
+    if(e.key==="arrowleft") moveplayer(-1,0);
+    if(e.key==="arrowright") moveplayer(1,0);
 });
 
-// Initial draw
-drawMaze();
-=======
-const questions = [
-    "What was your first thought when we met? 💭",
-    "What’s your favorite memory of us? 🥰",
-    "What do you love the most about me? ❤️",
-    "If we traveled anywhere together, where would it be? ✈️",
-    "What song reminds you of us? 🎵",
-    "What’s one thing you want us to do together this year? 💕",
-    "Do you know how much I love you? (Hint: A LOT 😘)"
-];
-
-function newQuestion() {
-    const random = Math.floor(Math.random() * questions.length);
-    document.getElementById("question").innerText = questions[random];
-}
-
-function scrollToSection(id) {
-    document.getElementById(id).scrollIntoView({ behavior: "smooth" });
-}
->>>>>>> 45b432b372cb554c34adc335c86c1e44a0b88e82
+drawmaze();
