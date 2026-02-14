@@ -16,72 +16,83 @@ const notes = [
 
 // function to show a random note
 function newNote() {
-  const noteElement = document.getElementById("note");
+  const noteElement = document.getElementById("love-note-text");
   if (!noteElement) return;
   const randomIndex = Math.floor(Math.random() * notes.length);
   noteElement.innerText = notes[randomIndex];
 }
 
 // --------------------
-// reveal button - original
+// original reveal button (upper)
 // --------------------
-const btn = document.getElementById("reveal-btn");
-const text = document.getElementById("reveal-text");
+const upperBtn = document.getElementById("reveal-btn");
+const upperText = document.getElementById("reveal-text");
 
-if (btn && text) {
-  btn.onclick = () => {
-    if (text.style.display === "none" || text.style.display === "") {
-      text.style.display = "block";
-      newNote();
-    } else {
-      newNote(); // show a new note when clicking again
+if (upperBtn && upperText) {
+  upperBtn.onclick = () => {
+    if (upperText.style.display === "none" || upperText.style.display === "") {
+      upperText.style.display = "block";
     }
   };
 }
 
 // --------------------
-// new reveal button for love notes
+// new reveal section after Spotify
 // --------------------
-// dynamically create the button and note container
-const loveNotesBtn = document.createElement("button");
-loveNotesBtn.innerText = "what do i love about you? ❤️";
-loveNotesBtn.style.display = "block";
-loveNotesBtn.style.margin = "20px auto";
-loveNotesBtn.style.padding = "15px 30px";
-loveNotesBtn.style.fontSize = "1.1em";
-loveNotesBtn.style.fontFamily = "'Pacifico', cursive";
-loveNotesBtn.style.background = "#ff66aa";
-loveNotesBtn.style.color = "#fff";
-loveNotesBtn.style.border = "none";
-loveNotesBtn.style.borderRadius = "25px";
-loveNotesBtn.style.cursor = "pointer";
-loveNotesBtn.style.transition = "all 0.3s ease";
-loveNotesBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
-loveNotesBtn.onmouseover = () => {
-  loveNotesBtn.style.background = "#ff3399";
-  loveNotesBtn.style.transform = "translateY(-2px)";
-  loveNotesBtn.style.boxShadow = "0 6px 12px rgba(0,0,0,0.3)";
-};
-loveNotesBtn.onmouseout = () => {
-  loveNotesBtn.style.background = "#ff66aa";
-  loveNotesBtn.style.transform = "translateY(0)";
-  loveNotesBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
-};
 
-// create note container
+// create container div
+const loveSection = document.createElement("div");
+loveSection.style.textAlign = "center";
+loveSection.style.marginTop = "30px";
+
+// create question text
+const loveQuestion = document.createElement("p");
+loveQuestion.innerText = "what do i love about you? ❤️";
+loveQuestion.style.fontSize = "1.3em";
+loveQuestion.style.fontWeight = "500";
+loveSection.appendChild(loveQuestion);
+
+// create reveal button
+const loveBtn = document.createElement("button");
+loveBtn.innerText = "reveal now";
+loveBtn.style.display = "inline-block";
+loveBtn.style.margin = "10px auto";
+loveBtn.style.padding = "12px 28px";
+loveBtn.style.fontSize = "1.1em";
+loveBtn.style.fontFamily = "'Pacifico', cursive";
+loveBtn.style.background = "#ff66aa";
+loveBtn.style.color = "#fff";
+loveBtn.style.border = "none";
+loveBtn.style.borderRadius = "25px";
+loveBtn.style.cursor = "pointer";
+loveBtn.style.transition = "all 0.3s ease";
+loveBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+loveBtn.onmouseover = () => {
+  loveBtn.style.background = "#ff3399";
+  loveBtn.style.transform = "translateY(-2px)";
+  loveBtn.style.boxShadow = "0 6px 12px rgba(0,0,0,0.3)";
+};
+loveBtn.onmouseout = () => {
+  loveBtn.style.background = "#ff66aa";
+  loveBtn.style.transform = "translateY(0)";
+  loveBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+};
+loveSection.appendChild(loveBtn);
+
+// create love note text container
 const loveNoteDiv = document.createElement("div");
-loveNoteDiv.id = "note";
+loveNoteDiv.id = "love-note-text";
 loveNoteDiv.className = "hidden-text";
+loveSection.appendChild(loveNoteDiv);
 
-// append button and note div before the first h2
-const firstH2 = document.querySelector("h2");
-if (firstH2) {
-  firstH2.parentNode.insertBefore(loveNotesBtn, firstH2);
-  firstH2.parentNode.insertBefore(loveNoteDiv, firstH2);
+// append this new section after the Spotify section
+const spotifySection = document.querySelector(".music");
+if (spotifySection) {
+  spotifySection.parentNode.insertBefore(loveSection, spotifySection.nextSibling);
 }
 
-// click event to show random notes
-loveNotesBtn.onclick = () => {
+// button click to reveal random note
+loveBtn.onclick = () => {
   loveNoteDiv.style.display = "block";
   newNote();
 };
@@ -120,18 +131,15 @@ function renderMaze() {
       const cell = document.createElement('div');
       cell.classList.add('maze-cell');
 
-      // wall or path
       if (grid[y][x] === 1) {
         cell.classList.add('wall');
       }
 
-      // player position
       if (x === playerPos.x && y === playerPos.y) {
         cell.classList.add('player');
         cell.textContent = 'P';
       }
 
-      // goal position
       if (x === goalPos.x && y === goalPos.y) {
         cell.classList.add('goal');
         cell.textContent = 'S';
@@ -147,17 +155,11 @@ document.addEventListener('keydown', (e) => {
   let newX = playerPos.x;
   let newY = playerPos.y;
 
-  if (e.key === 'ArrowUp') {
-    newY--;
-  } else if (e.key === 'ArrowDown') {
-    newY++;
-  } else if (e.key === 'ArrowLeft') {
-    newX--;
-  } else if (e.key === 'ArrowRight') {
-    newX++;
-  } else {
-    return; // ignore other keys
-  }
+  if (e.key === 'ArrowUp') newY--;
+  else if (e.key === 'ArrowDown') newY++;
+  else if (e.key === 'ArrowLeft') newX--;
+  else if (e.key === 'ArrowRight') newX++;
+  else return;
 
   e.preventDefault();
 
@@ -175,9 +177,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // initial render
-if (mazeElement) {
-  renderMaze();
-}
+if (mazeElement) renderMaze();
 
 // log maze to console
 console.log("maze matrix (0=path, 1=wall):");
