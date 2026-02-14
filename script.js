@@ -14,6 +14,7 @@ const notes = [
   "the little things you do that show you care 💝"
 ];
 
+// function to show a random note
 function newNote() {
   const noteElement = document.getElementById("note");
   if (!noteElement) return;
@@ -22,7 +23,7 @@ function newNote() {
 }
 
 // --------------------
-// reveal button
+// reveal button - original
 // --------------------
 const btn = document.getElementById("reveal-btn");
 const text = document.getElementById("reveal-text");
@@ -39,13 +40,59 @@ if (btn && text) {
 }
 
 // --------------------
+// new reveal button for love notes
+// --------------------
+// dynamically create the button and note container
+const loveNotesBtn = document.createElement("button");
+loveNotesBtn.innerText = "what do i love about you? ❤️";
+loveNotesBtn.style.display = "block";
+loveNotesBtn.style.margin = "20px auto";
+loveNotesBtn.style.padding = "15px 30px";
+loveNotesBtn.style.fontSize = "1.1em";
+loveNotesBtn.style.fontFamily = "'Pacifico', cursive";
+loveNotesBtn.style.background = "#ff66aa";
+loveNotesBtn.style.color = "#fff";
+loveNotesBtn.style.border = "none";
+loveNotesBtn.style.borderRadius = "25px";
+loveNotesBtn.style.cursor = "pointer";
+loveNotesBtn.style.transition = "all 0.3s ease";
+loveNotesBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+loveNotesBtn.onmouseover = () => {
+  loveNotesBtn.style.background = "#ff3399";
+  loveNotesBtn.style.transform = "translateY(-2px)";
+  loveNotesBtn.style.boxShadow = "0 6px 12px rgba(0,0,0,0.3)";
+};
+loveNotesBtn.onmouseout = () => {
+  loveNotesBtn.style.background = "#ff66aa";
+  loveNotesBtn.style.transform = "translateY(0)";
+  loveNotesBtn.style.boxShadow = "0 4px 8px rgba(0,0,0,0.2)";
+};
+
+// create note container
+const loveNoteDiv = document.createElement("div");
+loveNoteDiv.id = "note";
+loveNoteDiv.className = "hidden-text";
+
+// append button and note div before the first h2
+const firstH2 = document.querySelector("h2");
+if (firstH2) {
+  firstH2.parentNode.insertBefore(loveNotesBtn, firstH2);
+  firstH2.parentNode.insertBefore(loveNoteDiv, firstH2);
+}
+
+// click event to show random notes
+loveNotesBtn.onclick = () => {
+  loveNoteDiv.style.display = "block";
+  newNote();
+};
+
+// --------------------
 // maze game
 // --------------------
 const mazeSize = 10;
 const mazeElement = document.getElementById("maze");
 
 // Define the maze grid: 0 = path, 1 = wall
-// This is a 10x10 maze with a guaranteed path from top-left to bottom-right
 let grid = [
   [0, 1, 0, 0, 0, 1, 0, 0, 0, 0],
   [0, 1, 0, 1, 0, 1, 0, 1, 1, 0],
@@ -62,9 +109,7 @@ let grid = [
 let playerPos = { x: 0, y: 0 };
 const goalPos = { x: 9, y: 9 };
 
-// --------------------
 // render function
-// --------------------
 function renderMaze() {
   if (!mazeElement) return;
   
@@ -97,9 +142,7 @@ function renderMaze() {
   }
 }
 
-// --------------------
 // move player
-// --------------------
 document.addEventListener('keydown', (e) => {
   let newX = playerPos.x;
   let newY = playerPos.y;
@@ -116,16 +159,13 @@ document.addEventListener('keydown', (e) => {
     return; // ignore other keys
   }
 
-  // prevent default arrow key scrolling
   e.preventDefault();
 
-  // only move if within bounds and on a path (0)
   if (newX >= 0 && newX < mazeSize && newY >= 0 && newY < mazeSize && grid[newY][newX] === 0) {
     playerPos.x = newX;
     playerPos.y = newY;
     renderMaze();
     
-    // check if player reached the goal
     if (playerPos.x === goalPos.x && playerPos.y === goalPos.y) {
       setTimeout(() => {
         alert('you found me! ❤️ my heart is yours forever 💕');
@@ -134,15 +174,11 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// --------------------
 // initial render
-// --------------------
 if (mazeElement) {
   renderMaze();
 }
 
-// --------------------
-// log maze to console for debugging
-// --------------------
+// log maze to console
 console.log("maze matrix (0=path, 1=wall):");
 console.table(grid);
