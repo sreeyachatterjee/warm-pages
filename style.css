@@ -1,73 +1,72 @@
 body {
-    margin: 0;
-    font-family: 'poppins', sans-serif;
-    background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
-    color: #4a0033;
-    text-align: center;
+  font-family: sans-serif;
+  margin: 20px;
+  text-transform: lowercase;
+  background: #ffe6f0;
+  color: #88004d;
 }
 
-header h1 {
-    font-family: 'dancing script', cursive;
-    font-size: 3rem;
-    margin: 30px 0;
+/* gallery row */
+.gallery {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.gallery img {
+  flex: 1 1 calc(20% - 10px);
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-h2 {
-    font-family: 'dancing script', cursive;
-    font-size: 2.2rem;
-    margin: 20px 0;
+/* reveal section */
+.hidden-text {
+  display: none;
+  margin-top: 10px;
+  color: #cc3385;
 }
 
 button {
-    font-family: 'dancing script', cursive;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border-radius: 12px;
-    background: #ff4d6d;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #ffb3d9;
+  border: 1px solid #ff66aa;
+  color: #550033;
+  margin-bottom: 20px;
 }
 
-button:hover {
-    transform: scale(1.05);
+/* maze grid */
+.maze-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 2px;
+  width: 1000px;
+  height: 1000px;
+  margin: auto;
 }
-
-.love-notes, .music, .gallery, .game {
-    padding: 50px 20px;
+.maze-cell {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2em;
+  color: #550033;
+  background: #ffd6e6; /* path */
 }
-
-.music iframe {
-    border-radius: 12px;
-    margin-top: 20px;
+.maze-cell.wall {
+  background: #ff66aa;
 }
-
-.music-note {
-    margin-top: 10px;
-    font-style: italic;
+.maze-cell.player {
+  color: #fff;
+  background: #ff3399;
 }
-
-/* gallery grid */
-.gallery .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-items: center;
-    margin-top: 20px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    object-fit: cover;
-}
-
-/* maze canvas */
-canvas {
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-    margin-top: 20px;
+.maze-cell.goal {
+  color: #fff;
+  background: #ff0066;
 }

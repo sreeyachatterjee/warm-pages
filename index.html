@@ -1,46 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>warm pages</title>
-    <link href="https://fonts.googleapis.com/css2?family=dancing+script:wght@400;700&family=poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <title>happy valentine</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=dancing+script:wght@400;700&family=poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>happy valentine 💕</h1>
-    </header>
 
-    <section class="love-notes">
-        <h2>little things i love about you 💕</h2>
-        <p id="note">tap the button 🤍</p>
-        <button onclick="newnote()">reveal one ✨</button>
-    </section>
+  <h2>little things i love about you</h2>
+  <button id="reveal-btn">reveal one ✨</button>
+  <div id="reveal-text" class="hidden-text">you are amazing ✨</div>
 
-    <section class="music">
-        <h2>songs that feel like us 🎶</h2>
-        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5L0ynGOZKFicKWHmBDw3Ov?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        <p class="music-note">press play when you’re ready… this one is for you ❤️</p>
-    </section>
+  <h2>songs that feel like us</h2>
+  <p>press play when you’re ready… this one is for you ❤️</p>
 
-    <section class="gallery">
-        <h2>our memories 📸</h2>
-        <div class="grid">
-            <img src="pic1.jpeg" alt="memory 1">
-            <img src="pic2.jpeg" alt="memory 2">
-            <img src="pic3.jpeg" alt="memory 3">
-            <img src="pic4.jpeg" alt="memory 4">
-            <img src="pic5.jpeg" alt="memory 5">
-        </div>
-    </section>
+  <h2>our memories</h2>
+  <div class="gallery">
+    <img src="pic1.jpeg" alt="memory 1">
+    <img src="pic2.jpeg" alt="memory 2">
+    <img src="pic3.jpeg" alt="memory 3">
+    <img src="pic4.jpeg" alt="memory 4">
+    <img src="pic5.jpeg" alt="memory 5">
+  </div>
 
-    <section class="game">
-        <h2>find your way to me 💕</h2>
-        <p>use arrow keys to reach me ❤️</p>
-        <canvas id="mazecanvas" width="1000" height="1000"></canvas>
-    </section>
+  <h2>find your way to me</h2>
+  <p>use arrow keys to reach me ❤️</p>
 
-    <script src="script.js"></script>
+  <div id="maze" class="maze-grid"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>

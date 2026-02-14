@@ -1,93 +1,99 @@
 // love notes
 const notes = [
-    "the way you look at me like i’m home 🫶",
-    "how you always make time for me, no matter what ❤️",
-    "your laugh — it’s my favorite sound 🥹",
-    "how safe i feel when i’m with you 🤍",
-    "the way you believe in me, even when i don’t ✨",
-    "how you make ordinary days feel special 💕",
-    "you. just you."
+  "the way you look at me like i’m home 🫶",
+  "how you always make time for me, no matter what ❤️",
+  "your laugh — it’s my favorite sound 🥹",
+  "how safe i feel when i’m with you 🤍",
+  "the way you believe in me, even when i don’t ✨",
+  "how you make ordinary days feel special 💕",
+  "you. just you."
 ];
 
 function newnote() {
-    const noteelement = document.getElementById("note");
-    if (!noteelement) return;
-    const randomindex = Math.floor(Math.random() * notes.length);
-    noteelement.innertext = notes[randomindex];
+  const noteelement = document.getElementById("note");
+  if (!noteelement) return;
+  const randomindex = Math.floor(Math.random() * notes.length);
+  noteelement.innerText = notes[randomindex];
 }
 
+// reveal button
+const btn = document.getElementById("reveal-btn");
+const text = document.getElementById("reveal-text");
+
+btn.onclick = () => {
+  text.style.display = text.style.display === "none" ? "block" : "none";
+};
+
+// -------------------
 // maze game
-const canvas = document.getElementById("mazecanvas");
-const ctx = canvas.getContext("2d");
-const tilesize = 50;
+// -------------------
+const mazeSize = 10;
+const maze = document.getElementById("maze");
+let grid = Array.from({ length: mazeSize }, () => Array(mazeSize).fill(1)); // 1 = wall
+let playerPos = { x: 0, y: 0 };
+const goalPos = { x: mazeSize - 1, y: mazeSize - 1 };
 
-const maze = [
-  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-  [1,0,1,0,0,0,1,0,1,0,0,1,0,0,1,0,0,0,0,1],
-  [1,0,1,0,1,0,1,0,1,1,0,1,0,1,1,0,1,1,0,1],
-  [1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1],
-  [1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,0,1,0,1],
-  [1,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,1],
-  [1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,1],
-  [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1],
-  [1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,0,1],
-  [1,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,1],
-  [1,0,1,1,1,1,0,1,1,1,1,0,1,1,1,0,1,1,0,1],
-  [1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1],
-  [1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1],
-  [1,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,1],
-  [1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1],
-  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1],
-  [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-  [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1],
-  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-];
-
-let player = { x: 1, y: 1 };
-const goal = { x: 18, y: 18 };
-
-function drawmaze() {
-    ctx.clearrect(0,0,canvas.width,canvas.height);
-    for(let y=0;y<maze.length;y++){
-        for(let x=0;x<maze[y].length;x++){
-            if(maze[y][x]===1){
-                ctx.fillstyle="#ffb3c6";
-                ctx.fillrect(x*tilesize,y*tilesize,tilesize,tilesize);
-            }else{
-                ctx.fillstyle="#fff";
-                ctx.fillrect(x*tilesize,y*tilesize,tilesize,tilesize);
-            }
-        }
+// generate solvable maze using DFS
+function generateMaze(x = 0, y = 0) {
+  grid[y][x] = 0; // mark path
+  const directions = [[0,1],[1,0],[0,-1],[-1,0]].sort(() => Math.random() - 0.5);
+  for (const [dx, dy] of directions) {
+    const nx = x + dx * 2;
+    const ny = y + dy * 2;
+    if (ny >= 0 && ny < mazeSize && nx >= 0 && nx < mazeSize && grid[ny][nx] === 1) {
+      grid[y + dy][x + dx] = 0; // carve path
+      generateMaze(nx, ny);
     }
-    ctx.fillstyle="#ff4d6d";
-    ctx.font="bold 40px arial";
-    ctx.textalign="center";
-    ctx.textbaseline="middle";
-    ctx.filltext("p",goal.x*tilesize+tilesize/2,goal.y*tilesize+tilesize/2);
+  }
+}
+generateMaze();
 
-    ctx.fillstyle="#ff006e";
-    ctx.filltext("s",player.x*tilesize+tilesize/2,player.y*tilesize+tilesize/2);
+// render maze
+function renderMaze() {
+  maze.innerHTML = '';
+  for (let y = 0; y < mazeSize; y++) {
+    for (let x = 0; x < mazeSize; x++) {
+      const cell = document.createElement('div');
+      cell.classList.add('maze-cell');
+      if (grid[y][x] === 1) cell.classList.add('wall');
+      if (x === playerPos.x && y === playerPos.y) {
+        cell.classList.add('player');
+        cell.textContent = 'p';
+      }
+      if (x === goalPos.x && y === goalPos.y) {
+        cell.classList.add('goal');
+        cell.textContent = 's';
+      }
+      maze.appendChild(cell);
+    }
+  }
 }
 
-function moveplayer(dx,dy){
-    const newx = player.x + dx;
-    const newy = player.y + dy;
-    if(maze[newy][newx]===0){
-        player.x=newx;
-        player.y=newy;
-    }
-    if(player.x===goal.x && player.y===goal.y){
-        setTimeout(()=>{alert("you found me. just like always ❤️")},100);
-    }
-    drawmaze();
-}
+// move player
+document.addEventListener('keydown', (e) => {
+  let newX = playerPos.x;
+  let newY = playerPos.y;
 
-document.addEventListener("keydown",(e)=>{
-    if(e.key==="arrowup") moveplayer(0,-1);
-    if(e.key==="arrowdown") moveplayer(0,1);
-    if(e.key==="arrowleft") moveplayer(-1,0);
-    if(e.key==="arrowright") moveplayer(1,0);
+  if (e.key === 'ArrowUp') newY--;
+  else if (e.key === 'ArrowDown') newY++;
+  else if (e.key === 'ArrowLeft') newX--;
+  else if (e.key === 'ArrowRight') newX++;
+
+  if (
+    newX >= 0 &&
+    newX < mazeSize &&
+    newY >= 0 &&
+    newY < mazeSize &&
+    grid[newY][newX] === 0
+  ) {
+    playerPos.x = newX;
+    playerPos.y = newY;
+    renderMaze();
+    if (playerPos.x === goalPos.x && playerPos.y === goalPos.y) {
+      alert('you found me! ❤️');
+    }
+  }
 });
 
-drawmaze();
+// initial render
+renderMaze();
