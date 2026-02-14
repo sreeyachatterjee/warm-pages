@@ -90,3 +90,53 @@ button {
   color: #fff;
   background: #ff0066;
 }
+/* gallery */
+.gallery {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+  flex-wrap: nowrap;
+  overflow-x: auto; /* allow horizontal scroll if needed */
+}
+.gallery img {
+  flex: 0 0 19%; /* takes 19% of the width */
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.maze-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 2px;
+  width: 1000px;
+  height: 1000px;
+  margin: 40px auto;
+  max-width: 100%; /* responsive */
+  max-height: 100%;
+}
+.maze-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2em;
+  color: #550033;
+  background: #ffd6e6; /* path */
+}
+.maze-cell.wall {
+  background: #ff66aa;
+}
+.maze-cell.player {
+  color: #fff;
+  background: #ff3399;
+}
+.maze-cell.goal {
+  color: #fff;
+  background: #ff0066;
+}
+
+body { font-family: 'Roboto', sans-serif; }
+h2, h1 { font-family: 'Pacifico', cursive; }
